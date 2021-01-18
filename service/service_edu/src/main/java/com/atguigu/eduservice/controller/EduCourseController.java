@@ -103,19 +103,21 @@ public class EduCourseController {
 
 
 
-    /**
-     * 条件查询带分页
-     *
-     * @return
-     */
+
     @GetMapping
     public R getCourseList() {
         List<EduCourse> list = courseService.list(null);
         return R.ok().data("list", list);
     }
 
-    // TODO  完善条件查询带分页
 
+    /**
+     * 条件查询带分页
+     * @param current
+     * @param limit
+     * @param courseQuery
+     * @return
+     */
     @PostMapping("pageCourseCondition/{current}/{limit}")
     public R pageCourseCondition(@PathVariable long current, @PathVariable long limit,
                                  @RequestBody(required = false) CourseQuery courseQuery) {
