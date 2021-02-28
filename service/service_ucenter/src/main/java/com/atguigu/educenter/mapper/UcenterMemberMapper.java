@@ -2,6 +2,7 @@ package com.atguigu.educenter.mapper;
 
 import com.atguigu.educenter.entity.UcenterMember;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import feign.Param;
 
 /**
  * <p>
@@ -13,4 +14,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface UcenterMemberMapper extends BaseMapper<UcenterMember> {
 
+    Integer countRegisterDay(@Param("day") String day);
 }

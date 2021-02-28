@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 
 /**
+ * * 自编写评论功能代码:
+ * * - CommentFrontController, UcenterClient, UcenterClientImpl,
+ * * - UcenterMemberController.getCommentMemberInfoById
+ *
  * <p>
  * 会员表 前端控制器
  * </p>
@@ -28,7 +32,6 @@ public class UcenterMemberController {
     @Autowired
     private UcenterMemberService memberService;
 
-    //登录
 
     /**
      * 登录方法
@@ -74,5 +77,32 @@ public class UcenterMemberController {
         return R.ok().data("userInfo", member);
     }
 
+
+    /**
+     * 根据id获取评论用户信息
+     *
+     * @param memberId
+     * @return
+     */
+    @GetMapping("getCommentMemberInfoById/{memberId}")
+    public R getCommentMemberInfoById(@PathVariable("memberId") String memberId) {
+        UcenterMember member = memberService.getById(memberId);
+        String nickname = member.getNickname();
+        String avatar = member.getAvatar();
+        return R.ok().data("nickName", nickname).data("avatar", avatar);
+    }
+
+    /**
+     * 查询某一天注册人数
+     *
+     * @param day
+     * @return
+     */
+    @GetMapping("countRegister/{day}")
+    public R countRegister(@PathVariable("day") String day) {
+        Integer count = memberService.countRegisterDay(day);
+        System.out.println(count);
+        return R.ok().data("countRegister", count);
+    }
 }
 

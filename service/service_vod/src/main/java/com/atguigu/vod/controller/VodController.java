@@ -21,7 +21,13 @@ public class VodController {
     @Autowired
     private VodService vodService;
 
-    //上传视频到阿里云
+
+    /**
+     * 上传视频到阿里云
+     *
+     * @param file
+     * @return
+     */
     @PostMapping("uploadAlyiVideo")
     public R uploadAlyiVideo(MultipartFile file) {
         //返回上传视频id
@@ -57,6 +63,7 @@ public class VodController {
 
     /**
      * 根据视频id删除多个阿里云视频
+     *
      * @param videoIdList
      * @return
      */
